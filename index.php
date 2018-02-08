@@ -8,14 +8,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Trip Tracker</title>
   </head>
   <body>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
+<!-- remplaced with full jquery as the slim version leaves out ajax
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
@@ -52,12 +54,7 @@
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
           <div class="card-body">
-            This will be a list of People to select from. Selecting one should update the details and visits cards, unless i can think of some better way to do it later.
-            <div class="list-group col-4">
-              <a href="#" class="list-group-item list-group-item-action">person a</a>
-              <a href="#" class="list-group-item list-group-item-action">person b</a>
-              <a href="#" class="list-group-item list-group-item-action">person c</a>
-              <a href="#" class="list-group-item list-group-item-action">person d</a>
+            <div class="list-group col-4" id="peopleList">
             </div>
           </div>
         </div>
@@ -71,10 +68,9 @@
           </h5>
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-          <div class="card-body">
-            Name:</br>
-            Favorite Food:</br>
-            Other details about this person aren't really tracked.
+          <div class="card-body" id="detailCard">
+            Name: None</br>
+            Favorite Food: N/A</br>
           </div>
         </div>
       </div>
@@ -88,33 +84,7 @@
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
           <div class="card-body">
-            <table class="table table-striped">
-              <thead class="thead-dark">
-                <th>State</th>
-                <th>Date</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>dummy</td>
-                  <td>dummy</td>
-                </tr>
-                <tr>
-                  <td>dummy</td>
-                  <td>dummy</td>
-                </tr>
-                <tr>
-                  <td>dummy</td>
-                  <td>dummy</td>
-                </tr>
-                <tr>
-                  <td>dummy</td>
-                  <td>dummy</td>
-                </tr>
-                <tr>
-                  <td>dummy</td>
-                  <td>dummy</td>
-                </tr>
-              </tbody>
+            <table class="table table-striped" id="visitTable">
             </table>
             <nav aria-label="Page navigation">
               <ul class="pagination justify-content-center">
@@ -139,6 +109,6 @@
         </div>
       </div>
     </div>
-
+    <script src="script.js"></script>
   </body>
 </html>
