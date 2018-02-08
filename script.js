@@ -6,12 +6,25 @@ $(document).ready(function(){
 
   $('#peopleList').click(function(e){
     //this should grab the selected person, and load their data into the other objects
-    //load up the Details
-    GetPersonDetails(e.target.id);
-    //load up the Visits
-    GetPersonVisits(e.target.id);
-    //select the person in the list
-    SelectPersonList(e.target.id);
+    var list = document.getElementById('peopleList').childNodes;
+    var testTarget = e.target.getAttribute("class");
+
+    //if the name just clicked on is not the active name then show all the data
+    if(testTarget.search("active") == -1) {
+      //load up the Details
+      GetPersonDetails(e.target.id);
+      //load up the Visits
+      GetPersonVisits(e.target.id);
+      //select the person in the list
+      SelectPersonList(e.target.id);
+
+      $('#detailsCollapse').collapse('show');
+    }
+    else {
+      //hide the card that shows all the data
+      $('#detailsCollapse').collapse('hide');
+      e.target.setAttribute("class","list-group-item list-group-item-action list-group-item-info");
+    }
 
   });
 
@@ -26,7 +39,7 @@ $(document).ready(function(){
         var list = JSON.parse(result);
         var htmlString = '';
         for (var i = 0; i < list.length; i++) {
-          htmlString += "<a href=#  class='list-group-item list-group-item-action' id=" + list[i]['id'] + ">" + list[i]['first_name'] + " " + list[i]['last_name'] + "</a>";
+          htmlString += "<a href=#  class='list-group-item list-group-item-action list-group-item-info' id=" + list[i]['id'] + ">" + list[i]['first_name'] + " " + list[i]['last_name'] + "</a>";
         }
 
         document.getElementById('peopleList').innerHTML = htmlString;
@@ -69,7 +82,7 @@ $(document).ready(function(){
           {
             //build the list from the result and insert it into the correct element
             var list = JSON.parse(result);
-            var htmlString = "<thead class='thead-dark'>"
+            var htmlString = "<thead class='thead-info'>"
                             + "<th>State</th>"
                             + "<th>Date</th>"
                             + "</thead>"
@@ -116,12 +129,13 @@ $(document).ready(function(){
     var list = document.getElementById('peopleList').childNodes;
     for (var i = 0; i < list.length; i++) {
       if(list[i].id == id) {
-        list[i].setAttribute("class","list-group-item list-group-item-action active");
+        list[i].setAttribute("class","list-group-item list-group-item-action list-group-item-info active");
       }
       else {
-        list[i].setAttribute("class","list-group-item list-group-item-action");
+        list[i].setAttribute("class","list-group-item list-group-item-action list-group-item-info");
       }
     }
   }
+
 
 });
