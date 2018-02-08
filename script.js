@@ -1,8 +1,6 @@
 $(document).ready(function(){
   RefreshPeople();
-  var states;
-  GetStates();
-  console.log(states);
+  LoadStates();
 
   $('#peopleList').click(function(e){
     //this should grab the selected person, and load their data into the other objects
@@ -11,10 +9,11 @@ $(document).ready(function(){
 
     //if the name just clicked on is not the active name then show all the data
     if(testTarget.search("active") == -1) {
+      var tempId = e.target.id.split("_");
       //load up the Details
-      GetPersonDetails(e.target.id);
+      GetPersonDetails(tempId[1]);
       //load up the Visits
-      GetPersonVisits(e.target.id);
+      GetPersonVisits(tempId[1]);
       //select the person in the list
       SelectPersonList(e.target.id);
 
@@ -37,12 +36,15 @@ $(document).ready(function(){
       {
         //build the list from the result and insert it into the correct element
         var list = JSON.parse(result);
-        var htmlString = '';
+        var htmlString1 = '';
+        var htmlString2 = "<option selected>Select A Person</option>";
         for (var i = 0; i < list.length; i++) {
-          htmlString += "<a href=#  class='list-group-item list-group-item-action list-group-item-info' id=" + list[i]['id'] + ">" + list[i]['first_name'] + " " + list[i]['last_name'] + "</a>";
+          htmlString1 += "<a href=#  class='list-group-item list-group-item-action list-group-item-info' id=listItem_" + list[i]['id'] + ">" + list[i]['first_name'] + " " + list[i]['last_name'] + "</a>";
+          htmlString2 += "<option id=selPerson_" + list[i]['id'] + ">" + list[i]['first_name'] + " " + list[i]['last_name'] + "</option>";
         }
 
-        document.getElementById('peopleList').innerHTML = htmlString;
+        document.getElementById('peopleList').innerHTML = htmlString1;
+        document.getElementById('visitModalPerson').innerHTML = htmlString2;
       }
     });
 
@@ -109,22 +111,6 @@ $(document).ready(function(){
     });
   }
 
-  function GetStates() {
-    var stateTable2 = {a:1};
-    $.ajax({
-      type: "GET",
-      url: "/api/states",
-      success: function(result1,stateTable)
-      {
-        //build the list from the result and insert it into the correct element
-        stateTable1 = JSON.parse(result1);
-            console.log(stateTable1);
-      }
-    });
-    //stateTable = JSON.parse(objResponse.responseText);
-
-  }
-
   function SelectPersonList(id) {
     var list = document.getElementById('peopleList').childNodes;
     for (var i = 0; i < list.length; i++) {
@@ -137,5 +123,21 @@ $(document).ready(function(){
     }
   }
 
+  function LoadStates() {
+    $.ajax({
+      type: "GET",
+      url: "/api/states",
+      success: function(result)
+      {
+        var htmlString = '<option selected>Select A State</option>';
+        //build the list from the result and insert it into the correct element
+        stateTable = JSON.parse(result);
+        for(var i = 0; i < stateTable.length; i++) {
+          htmlString += "<option id=selState_" + stateTable[i]['id'] + ">" + stateTable[i]['state_name'] + " (" + stateTable[i]['state_abbreviation'] + ")</option>";
+        }
+        document.getElementById('visitModalState').innerHTML = htmlString;
+      }
+    });
+  }
 
 });

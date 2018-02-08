@@ -32,12 +32,16 @@
           <li class="nav-item active">
             <a class="nav-link disabled" href="#">Add A New</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">-Person</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">-Visit</a>
-          </li>
+          <form class="form-inline">
+            <div class="btn-group-vertical">
+              <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#newVisitModal">
+                Visit
+              </button>
+              <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#newPersonModal">
+                Person
+              </button>
+            </div>
+          </form>
         </ul>
       </div>
     </nav>
@@ -86,6 +90,78 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="newPersonModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newPersonModalLabel">Add A New Person</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="firstName" class="col-form-label">First Name:</label>
+              <input type="text" class="form-control" id="firstName">
+            </div>
+            <div class="form-group">
+              <label for="lastName" class="col-form-label">Last Name:</label>
+              <input type="text" class="form-control" id="lastName">
+            </div>
+            <div class="form-group">
+              <label for="favoriteFood" class="col-form-label">Favorite Food:</label>
+              <input type="text" class="form-control" id="favoriteFood">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info">Add Person</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="newVisitModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newVisitModalLabel">Add A New Visit</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="visitModalPerson" class="col-form-label">Person:</label>
+              <select class="custom-select" id="visitModalPerson">
+                <option selected>Select A Person</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="visitModalState" class="col-form-label">State:</label>
+              <select class="custom-select" id="visitModalState">
+                <option selected>Select A State</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="visitModalDate" class="col-form-label">Date Visited:</label>
+              <input type="date" class="form-control" id="visitModalDate">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info">Add Person</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <script src="script.js"></script>
   </body>
 </html>
