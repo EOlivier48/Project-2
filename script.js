@@ -41,14 +41,14 @@ $(document).ready(function(){
       data: JSON.stringify(xhrData),
       success: function(result)
       {
-        list = document.getElementsByClassName("list-group-item list-group-item-action list-group-item-info active");
-        console.log(list[0].id);
-        if(list) {
+        var list = document.getElementsByClassName("list-group-item list-group-item-action list-group-item-info active");
+        //console.log(list[0].id);
+        if(list !== 'undefined' && list.length > 0) {
           listIdArr = list[0].id.split("_");
           GetPersonVisits(listIdArr[1]);
         }
         $('#newVisitModal').modal('hide');
-        console.log(xhrData);
+        //console.log(xhrData);
       }
     });
 
