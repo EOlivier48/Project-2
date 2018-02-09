@@ -51,7 +51,7 @@
         <div class="card">
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
-              <button class="btn btn-info" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 People
               </button>
             </h5>
@@ -104,21 +104,21 @@
           <form>
             <div class="form-group">
               <label for="firstName" class="col-form-label">First Name:</label>
-              <input type="text" class="form-control" id="firstName">
+              <input type="text" class="form-control" id="personModalFN">
             </div>
             <div class="form-group">
               <label for="lastName" class="col-form-label">Last Name:</label>
-              <input type="text" class="form-control" id="lastName">
+              <input type="text" class="form-control" id="personModalLN">
             </div>
             <div class="form-group">
               <label for="favoriteFood" class="col-form-label">Favorite Food:</label>
-              <input type="text" class="form-control" id="favoriteFood">
+              <input type="text" class="form-control" id="personModalFF">
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-info">Add Person</button>
+          <button type="button" class="btn btn-info" id="createNewPerson">Add Person</button>
         </div>
       </div>
     </div>
@@ -156,7 +156,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-info">Add Person</button>
+          <button type="button" class="btn btn-info" id="createNewVisit">Add Visit</button>
         </div>
       </div>
     </div>

@@ -57,6 +57,19 @@ function people($args,$method) {
         return response("People Not Found",404);
       }
     }
+    elseif($method == 'POST') {
+      $bodyData = getBodyData();
+      if($bodyData['first_name'] && $bodyData['last_name'] && $bodyData['favorite_food']) {
+        $m->initModel();
+        $result = $m->addUser($bodyData['first_name'],$bodyData['last_name'],$bodyData['favorite_food']);
+        if($result) {
+          return response("Ok");
+        }
+        else {
+          return response("Bad Request",400);
+        }
+      }
+    }
     else {
       //return 405 method not allowed
       return response("Method Not Allowed", 405);
@@ -104,19 +117,9 @@ function people($args,$method) {
             return response("People Not Found",404);
           }
           break;
-        case 'POST':
-          $bodyData = getBodyData();
-          if($bodyData['first_name'] && $bodyData['last_name'] && $bodyData['favorite_food']) {
-            $m->initModel();
-            $result = $m->addUser($bodyData['first_name'],$bodyData['last_name'],$bodyData['favorite_food']);
-            if($result) {
-              return response("Ok");
-            }
-            else {
-              return response("Bad Request",400);
-            }
-          }
-          break;
+//        case 'POST':
+//
+//          break;
 //        case 'PUT':
             //PUT return 200 (ok) if updated, 404 (not found) if ID is not valid
 //          break;
@@ -311,7 +314,7 @@ function statusText($code) {
 
 function getBodyData() {
   $reqBody = file_get_contents('php://input');
-  return json_decode($reqBody);
+  return json_decode($reqBody,TRUE);
 }
 //header('application/json');
 //echo(json_encode($apiVars));
